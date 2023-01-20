@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
   User,
+  signOut,
 } from 'firebase/auth';
 import { IProfile, ISignIn, IUser } from '@/types/account';
 
@@ -27,6 +28,10 @@ class UserAuth extends Base {
     const { email, password } = account;
 
     return signInWithEmailAndPassword(this.auth, email, password);
+  }
+
+  signOut() {
+    return signOut(this.auth);
   }
 
   profileUpdate(profile: IProfile) {

@@ -8,6 +8,7 @@ import { ITab } from '@/types/main';
 import { Button, Link } from '@/components';
 import AllUserList from '@/pages/chat/components/AllUserList';
 import MyChatRooms from '@/pages/chat/components/MyChatRooms';
+import { userAuth } from '@/firebase/models';
 
 export const TAB_USERS = 'users';
 export const TAB_ROOMS = 'rooms';
@@ -21,6 +22,10 @@ const Main = () => {
   const { query } = useRouter();
 
   const selctedTab = useMemo(() => query.tab || TAB_USERS, [query]);
+
+  const handleSignOut = useCallback(() => {
+    userAuth.signOut();
+  }, []);
 
   const TabButton = useCallback(
     (props: ITab) => {
@@ -51,6 +56,9 @@ const Main = () => {
         {selctedTab === TAB_USERS && <AllUserList />}
         {selctedTab === TAB_ROOMS && <MyChatRooms />}
       </div>
+      <Button color="white" onClick={handleSignOut}>
+        로그아웃
+      </Button>
     </div>
   );
 };
