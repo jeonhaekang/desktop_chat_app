@@ -1,8 +1,18 @@
-.tab {
-  position: sticky;
-  top: 0;
+.main {
+  position: relative;
   display: grid;
   grid-template-rows: auto 1fr;
+  gap: 12px;
+  height: 100%;
+}
+
+.tab {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+}
+
+.content {
+  position: relative;
+  height: 100%;
 }

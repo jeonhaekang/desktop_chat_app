@@ -1,6 +1,6 @@
 import styles from '@/styles/pages/chat/main.module.scss';
 
-import { useCallback, useState } from 'react';
+import { Fragment, useCallback, useState } from 'react';
 
 import { ITab, TTab } from '@/types/main';
 
@@ -33,7 +33,7 @@ const Main = () => {
   );
 
   return (
-    <div>
+    <div className={styles.main}>
       <div className={styles.tab}>
         {TAB_LIST.map((tab) => {
           return <TabButton key={tab.tab} {...tab} />;

@@ -1,5 +1,7 @@
 .rootContainer {
   position: relative;
   height: 100vh;
+  max-height: 100vh;
   padding: 12px;
+  overflow: hidden;
 }
