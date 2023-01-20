@@ -35,8 +35,16 @@ class UserAuth extends Base {
     return updateProfile(currentUser, profile);
   }
 
-  getCurrentUser() {
-    return this.auth.currentUser;
+  getCurrentUser(): Promise<User> {
+    return new Promise((resolve, reject) => {
+      const currentUser = this.auth.currentUser;
+
+      if (currentUser) {
+        resolve(currentUser);
+      } else {
+        reject({ message: '로그인 정보가 없습니다. 다시 로그인 해주세요.', code: 401 });
+      }
+    });
   }
 }
 
