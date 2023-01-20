@@ -1,4 +1,4 @@
-import styles from './input.module.scss';
+import styles from '../styles/components/input.module.scss';
 
 import { ForwardedRef, forwardRef, InputHTMLAttributes } from 'react';
 
