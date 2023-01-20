@@ -1,5 +1,6 @@
 @use '@/styles/constants/colors';
 @use '@/styles/mixins/typography';
+@use '@/styles/mixins/flexbox';
 
 .inputBox {
   display: flex;
@@ -10,7 +11,7 @@
 .input {
   @include typography.content3;
   height: 42px;
-  padding: 0 12px;
+  padding: 12px;
   background-color: colors.$WHITE;
   border: 1px solid colors.$GS_BORDER;
   border-radius: 8px;
@@ -28,6 +29,10 @@
   &.error {
     border-color: colors.$R_BASE;
     box-shadow: colors.$FS_RED;
+  }
+
+  &::file-selector-button {
+    display: none;
   }
 }
 
