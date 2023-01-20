@@ -8,6 +8,7 @@ import { alertError, userAuth } from '@/firebase/models';
 import { ISignInForm } from '@/types/account';
 
 import { Button, Input } from '@/components';
+import Link from 'next/link';
 
 const SignIn = () => {
   const { register, formData, isValid } = useForm<ISignInForm>({
@@ -16,18 +17,19 @@ const SignIn = () => {
     displayName: '',
   });
 
-  const handleSignIn = useCallback(async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSignIn = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    try {
-      const response = await userAuth.signIn(formData);
-      await userAuth.profileUpdate(formData);
-
-      console.log(response);
-    } catch (error) {
-      alertError(error);
-    }
-  }, []);
+      try {
+        await userAuth.signIn(formData);
+        await userAuth.profileUpdate(formData);
+      } catch (error) {
+        alertError(error);
+      }
+    },
+    [formData]
+  );
 
   return (
     <Fragment>
@@ -54,6 +56,9 @@ const SignIn = () => {
         <Button type="submit" disabled={!isValid}>
           회원가입
         </Button>
+        <Link href="/account/sing-up">
+          <Button color="white">로그인</Button>
+        </Link>
       </form>
     </Fragment>
   );
