@@ -1,0 +1,34 @@
+@use '@/styles/mixins/typography';
+@use '@/styles/constants/colors';
+
+.messageHistory {
+  @include typography.content3;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  overflow: scroll;
+  border: 1px solid colors.$GS_BORDER;
+  border-radius: 8px;
+}
+
+.messageBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+
+  &.isMine {
+    align-items: flex-end;
+
+    p {
+      background-color: colors.$B_BG;
+    }
+  }
+
+  p {
+    padding: 6px 12px;
+    background-color: colors.$GS_BG_SECONDARY;
+    border-radius: 6px;
+  }
+}

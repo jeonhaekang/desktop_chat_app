@@ -1,0 +1,9 @@
+@use '@/styles/mixins/typography';
+@use '@/styles/constants/colors';
+
+.room {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 12px;
+  height: 100vh;
+}
