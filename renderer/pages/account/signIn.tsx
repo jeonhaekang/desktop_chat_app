@@ -3,6 +3,8 @@ import styles from '@/styles/pages/account/signIn.module.scss';
 import { FormEvent, Fragment, useCallback } from 'react';
 import { useForm } from '@/hooks';
 
+import { alertError, userAuth } from '@/firebase/models';
+
 import { ISignInForm } from '@/types/account';
 
 import { Button, Input } from '@/components';
@@ -14,8 +16,17 @@ const SignIn = () => {
     displayName: '',
   });
 
-  const handleSignIn = useCallback((e: FormEvent<HTMLFormElement>) => {
+  const handleSignIn = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    try {
+      const response = await userAuth.signIn(formData);
+      await userAuth.profileUpdate(formData);
+
+      console.log(response);
+    } catch (error) {
+      alertError(error);
+    }
   }, []);
 
   return (
