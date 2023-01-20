@@ -5,8 +5,8 @@ import { useCallback, useState } from 'react';
 import { ITab, TTab } from '@/types/main';
 
 import { Button } from '@/components';
-import Users from '@/pages/chat/components/users';
-import Rooms from '@/pages/chat/components/rooms';
+import Users from '@/pages/chat/components/Users';
+import Rooms from '@/pages/chat/components/Rooms';
 
 export const TAB_USERS = 'users';
 export const TAB_ROOMS = 'rooms';
