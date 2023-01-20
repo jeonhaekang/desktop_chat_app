@@ -15,15 +15,18 @@ const SignUp = () => {
     password: '',
   });
 
-  const handleSignUp = useCallback(async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSignUp = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    try {
-      await userAuth.signUp(formData);
-    } catch (error) {
-      alertError(error);
-    }
-  }, []);
+      try {
+        await userAuth.signUp(formData);
+      } catch (error) {
+        alertError(error);
+      }
+    },
+    [formData]
+  );
 
   return (
     <Fragment>
