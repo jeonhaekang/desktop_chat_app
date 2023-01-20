@@ -1,4 +1,4 @@
-import { TAB_ROOMS, TAB_USERS } from '@/pages/chat/main';
+import { TAB_ROOMS, TAB_USERS } from '@/pages/chat';
 
 type TTab = typeof TAB_USERS | typeof TAB_ROOMS;
 

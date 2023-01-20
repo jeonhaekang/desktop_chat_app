@@ -8,7 +8,7 @@ import { DataSnapshot } from 'firebase/database';
 
 import { IUser } from '@/types/account';
 
-const Users = () => {
+const AllUserList = () => {
   const { push } = useRouter();
 
   const [users, setUsers] = useState<IUser[]>([]);
@@ -66,4 +66,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default AllUserList;

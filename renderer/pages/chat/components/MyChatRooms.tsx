@@ -8,7 +8,7 @@ import { DataSnapshot } from 'firebase/database';
 
 import { IUserRooms } from '@/types/chat';
 
-const Rooms = () => {
+const MyChatRooms = () => {
   const { push } = useRouter();
 
   const [rooms, setRooms] = useState<IUserRooms[]>([]);
@@ -38,4 +38,4 @@ const Rooms = () => {
   );
 };
 
-export default Rooms;
+export default MyChatRooms;

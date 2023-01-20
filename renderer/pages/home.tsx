@@ -7,7 +7,7 @@ function Home() {
 
   useMount(() => {
     userAuth.subscribe((currentUser) => {
-      router.push(currentUser ? '/chat/main' : '/account/sign-up');
+      router.push(currentUser ? '/chat' : '/account/sign-up');
     });
   });
 

@@ -5,8 +5,8 @@ import { useCallback, useState } from 'react';
 import { ITab, TTab } from '@/types/main';
 
 import { Button } from '@/components';
-import Users from '@/pages/chat/components/Users';
-import Rooms from '@/pages/chat/components/Rooms';
+import AllUserList from '@/pages/chat/components/AllUserList';
+import MyChatRooms from '@/pages/chat/components/MyChatRooms';
 
 export const TAB_USERS = 'users';
 export const TAB_ROOMS = 'rooms';
@@ -40,8 +40,8 @@ const Main = () => {
         })}
       </div>
       <div className={styles.content}>
-        {selectedTab === TAB_USERS && <Users />}
-        {selectedTab === TAB_ROOMS && <Rooms />}
+        {selectedTab === TAB_USERS && <AllUserList />}
+        {selectedTab === TAB_ROOMS && <MyChatRooms />}
       </div>
     </div>
   );
