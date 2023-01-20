@@ -8,9 +8,11 @@ import { messagesDB, userAuth } from '@/firebase/models';
 import { DataSnapshot } from 'firebase/database';
 
 import { IMessage } from '@/types/chat';
+import { useAccount } from '@/contexts/AccountContext';
 
 const MessageHistory = () => {
   const { query } = useRouter();
+  const currentUser = useAccount();
 
   const [messages, setMessages] = useState<IMessage[]>([]);
 
@@ -19,8 +21,6 @@ const MessageHistory = () => {
 
     return Array.isArray(roomId) ? roomId[0] : roomId;
   }, []);
-
-  const currentUser = useMemo(() => userAuth.getCurrentUser(), []);
 
   const scrollTarget = useRef<HTMLLIElement>(null);
 

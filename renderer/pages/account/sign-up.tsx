@@ -3,7 +3,7 @@ import styles from '@/styles/pages/account/signUp.module.scss';
 import { FormEvent, Fragment, useCallback } from 'react';
 import { useForm } from '@/hooks';
 
-import { alertError, userAuth } from '@/firebase/models';
+import { userAuth } from '@/firebase/models';
 
 import { ISignIn } from '@/types/account';
 
@@ -22,7 +22,7 @@ const SignUp = () => {
       try {
         await userAuth.signUp(formData);
       } catch (error) {
-        alertError(error);
+        alert(error);
       }
     },
     [formData]

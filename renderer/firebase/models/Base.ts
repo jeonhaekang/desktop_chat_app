@@ -5,11 +5,3 @@ class Base {
 }
 
 export default Base;
-
-export const alertError = (error: unknown) => {
-  let message = 'unknown error';
-
-  if (error instanceof Error) message = error.message;
-
-  alert(message);
-};

@@ -13,14 +13,18 @@ const MyChatRooms = () => {
 
   const [rooms, setRooms] = useState<IUserRooms[]>([]);
 
-  const currentUser = useMemo(() => userAuth.getCurrentUser(), []);
+  useMount(async () => {
+    try {
+      const currentUser = await userAuth.getCurrentUser();
 
-  useMount(() => {
-    userRoomsDB.subscribe(currentUser.uid, (roomSnapShot: DataSnapshot) => {
-      const rooms: IUserRooms[] = Object.values(roomSnapShot.val());
+      userRoomsDB.subscribe(currentUser.uid, (roomSnapShot: DataSnapshot) => {
+        const rooms: IUserRooms[] = Object.values(roomSnapShot.val());
 
-      setRooms(rooms);
-    });
+        setRooms(rooms);
+      });
+    } catch (error) {
+      alert(error);
+    }
   });
 
   return (

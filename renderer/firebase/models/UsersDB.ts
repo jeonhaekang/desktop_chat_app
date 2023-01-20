@@ -1,7 +1,7 @@
 import Base from './Base';
-import { get, getDatabase, onChildAdded, onValue, ref, set } from 'firebase/database';
+import { get, getDatabase, onValue, ref, set } from 'firebase/database';
 import { TSnapShot } from '@/types/model';
-import { User } from 'firebase/auth';
+import { IUser } from '@/types/account';
 
 class UsersDB extends Base {
   db = getDatabase(this.app);
@@ -18,7 +18,7 @@ class UsersDB extends Base {
     return get(userRef);
   }
 
-  setUser(user: User) {
+  setUser(user: IUser) {
     const { uid, displayName } = user;
 
     const userRef = ref(this.db, `Users/${uid}`);

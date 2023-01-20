@@ -3,7 +3,7 @@ import styles from '@/styles/pages/chat/components/users.module.scss';
 import { useCallback, useState } from 'react';
 import { useMount, useRouter } from '@/hooks';
 
-import { alertError, roomsDB, userAuth, usersDB } from '@/firebase/models';
+import { roomsDB, userAuth, usersDB } from '@/firebase/models';
 import { DataSnapshot } from 'firebase/database';
 
 import { IUser } from '@/types/account';
@@ -15,9 +15,9 @@ const AllUserList = () => {
 
   const createChatRoom = useCallback(async (guestuser: IUser) => {
     try {
-      const currentUser = userAuth.getCurrentUser();
-
+      const currentUser = await userAuth.getCurrentUser();
       const createdRoom = await roomsDB.createRoom();
+
       const roomId = createdRoom.key;
 
       await roomsDB.inviteUser(roomId, currentUser);
@@ -25,29 +25,28 @@ const AllUserList = () => {
 
       push(`/chat/${roomId}`);
     } catch (error) {
-      alertError(error);
+      alert(error.message);
     }
   }, []);
 
   useMount(async () => {
-    const user = userAuth.getCurrentUser();
-
     try {
-      const userSnapShot = await usersDB.getUser(user.uid);
+      const currentUser = await userAuth.getCurrentUser();
+
+      const userSnapShot = await usersDB.getUser(currentUser.uid);
       const userCheck = userSnapShot.val();
 
       if (!userCheck) {
-        await usersDB.setUser(user);
+        await usersDB.setUser(currentUser);
       }
 
       usersDB.subscribe((usersSnapShot: DataSnapshot) => {
         const updatedUser = usersSnapShot.val();
-
-        delete updatedUser[user.uid];
+        delete updatedUser[currentUser.uid];
         setUsers(Object.values(updatedUser));
       });
     } catch (error) {
-      alertError(error);
+      alert(error.message);
     }
   });
 

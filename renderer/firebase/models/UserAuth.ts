@@ -8,7 +8,7 @@ import {
   updateProfile,
   User,
 } from 'firebase/auth';
-import { IProfile, ISignIn } from '@/types/account';
+import { IProfile, ISignIn, IUser } from '@/types/account';
 
 class UserAuth extends Base {
   auth = getAuth();
@@ -35,12 +35,14 @@ class UserAuth extends Base {
     return updateProfile(currentUser, profile);
   }
 
-  getCurrentUser(): Promise<User> {
+  getCurrentUser(): Promise<IUser> {
     return new Promise((resolve, reject) => {
       const currentUser = this.auth.currentUser;
 
       if (currentUser) {
-        resolve(currentUser);
+        const { uid, displayName } = currentUser;
+
+        resolve({ uid, displayName });
       } else {
         reject({ message: '로그인 정보가 없습니다. 다시 로그인 해주세요.', code: 401 });
       }

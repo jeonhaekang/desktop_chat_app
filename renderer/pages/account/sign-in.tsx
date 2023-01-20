@@ -3,7 +3,7 @@ import styles from '@/styles/pages/account/signIn.module.scss';
 import { FormEvent, Fragment, useCallback } from 'react';
 import { useForm } from '@/hooks';
 
-import { alertError, userAuth } from '@/firebase/models';
+import { userAuth } from '@/firebase/models';
 
 import { ISignInForm } from '@/types/account';
 
@@ -24,7 +24,7 @@ const SignIn = () => {
         await userAuth.signIn(formData);
         await userAuth.profileUpdate(formData);
       } catch (error) {
-        alertError(error);
+        alert(error.message);
       }
     },
     [formData]
@@ -58,7 +58,7 @@ const SignIn = () => {
         <Button type="submit" disabled={!isValid}>
           회원가입
         </Button>
-        
+
         <Link href="/account/sign-up">
           <Button color="white">로그인</Button>
         </Link>
