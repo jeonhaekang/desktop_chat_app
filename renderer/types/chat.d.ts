@@ -5,6 +5,7 @@ interface IMessage extends IUser {
 }
 
 interface IUserRooms {
+  roomId: string;
   lastMessage: string;
 }
 
