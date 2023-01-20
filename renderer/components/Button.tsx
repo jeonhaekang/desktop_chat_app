@@ -1,7 +1,7 @@
 import styles from '@/styles/components/button.module.scss';
 import cn from '@/styles/index';
 
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ForwardedRef, forwardRef, ReactNode } from 'react';
 
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'blue' | 'white' | 'red';
@@ -10,12 +10,15 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-const Button = ({ color = 'blue', size = 'medium', children, ...rest }: IProps) => {
+const Button = (
+  { color = 'blue', size = 'medium', children, ...rest }: IProps,
+  ref: ForwardedRef<HTMLButtonElement>
+) => {
   return (
-    <button className={cn(styles.button, styles[color], styles[size])} {...rest}>
+    <button ref={ref} className={cn(styles.button, styles[color], styles[size])} {...rest}>
       {children}
     </button>
   );
 };
 
-export default Button;
+export default forwardRef(Button);
