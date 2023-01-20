@@ -40,7 +40,7 @@ const SignIn = () => {
         <Input
           type="password"
           title="비밀번호"
-          description="최대 6자 이상 입력해 주세요."
+          description="최소 6자 이상 입력해 주세요."
           minLength={6}
           required
           {...register('password')}

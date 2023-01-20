@@ -1,6 +1,6 @@
 appId: com.example.nextron
-productName: My Nextron App
-copyright: Copyright © 2018 Yoshihide Shiono
+productName: Jeon Hae Kang Chat App
+copyright: Copyright © 2022 Jeon Hae Kang
 directories:
   output: dist
   buildResources: resources
