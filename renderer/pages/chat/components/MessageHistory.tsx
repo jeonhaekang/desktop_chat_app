@@ -1,10 +1,13 @@
-import { messagesDB, userAuth } from '@/firebase/models';
-import { useMount, useRouter } from '@/hooks';
-import cn from '@/styles';
 import styles from '@/styles/pages/chat/components/messageHistory.module.scss';
-import { IMessage } from '@/types/chat';
-import { DataSnapshot } from 'firebase/database';
+import cn from '@/styles';
+
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMount, useRouter } from '@/hooks';
+
+import { messagesDB, userAuth } from '@/firebase/models';
+import { DataSnapshot } from 'firebase/database';
+
+import { IMessage } from '@/types/chat';
 
 const MessageHistory = () => {
   const { query } = useRouter();

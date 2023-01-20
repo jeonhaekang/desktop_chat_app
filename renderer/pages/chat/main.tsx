@@ -1,6 +1,6 @@
 import styles from '@/styles/pages/chat/main.module.scss';
 
-import { Fragment, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { ITab, TTab } from '@/types/main';
 

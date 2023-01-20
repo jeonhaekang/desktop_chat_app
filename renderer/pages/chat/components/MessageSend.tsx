@@ -20,9 +20,12 @@ const MessageSend = () => {
 
   const currentUser = useMemo(() => {
     const user = userAuth.getCurrentUser();
-    const { uid, displayName } = user;
 
-    return { uid, displayName };
+    if (user) {
+      const { uid, displayName } = user;
+
+      return { uid, displayName };
+    }
   }, []);
 
   const { register, formData, isValid, reset } = useForm<IMessage>({ ...currentUser, message: '' });
