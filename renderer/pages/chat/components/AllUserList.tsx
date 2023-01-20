@@ -1,33 +1,19 @@
 import styles from '@/styles/pages/chat/components/users.module.scss';
 
-import { useCallback, useState } from 'react';
-import { useMount, useRouter } from '@/utils/hooks';
+import { useState } from 'react';
+import { useMount } from '@/utils/hooks';
 
-import { roomsDB, userAuth, usersDB } from '@/firebase/models';
+import { userAuth, usersDB } from '@/firebase/models';
 import { DataSnapshot } from 'firebase/database';
 
 import { IUser } from '@/types/account';
 
-const AllUserList = () => {
-  const { push } = useRouter();
+interface IProps {
+  onDoubleClickUser: (user: IUser) => void;
+}
 
+const AllUserList = ({ onDoubleClickUser }: IProps) => {
   const [users, setUsers] = useState<IUser[]>([]);
-
-  const createChatRoom = useCallback(async (guestuser: IUser) => {
-    try {
-      const currentUser = await userAuth.getCurrentUser();
-      const createdRoom = await roomsDB.createRoom();
-
-      const roomId = createdRoom.key;
-
-      await roomsDB.inviteUser(roomId, currentUser);
-      await roomsDB.inviteUser(roomId, guestuser);
-
-      push(`/chat/${roomId}`);
-    } catch (error) {
-      alert(error.message);
-    }
-  }, []);
 
   useMount(async () => {
     try {
@@ -56,7 +42,7 @@ const AllUserList = () => {
         const { uid, displayName } = user;
 
         return (
-          <li key={uid} className={styles.user} onDoubleClick={() => createChatRoom(user)}>
+          <li key={uid} className={styles.user} onDoubleClick={() => onDoubleClickUser(user)}>
             {displayName}
           </li>
         );

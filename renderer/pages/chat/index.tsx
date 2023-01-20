@@ -3,12 +3,14 @@ import styles from '@/styles/pages/chat/main.module.scss';
 import { useCallback, useMemo } from 'react';
 import { useRouter } from '@/utils/hooks';
 
+import { roomsDB, userAuth } from '@/firebase/models';
+
 import { ITab } from '@/types/main';
+import { IUser } from '@/types/account';
 
 import { Button, Link } from '@/components';
 import AllUserList from '@/pages/chat/components/AllUserList';
 import MyChatRooms from '@/pages/chat/components/MyChatRooms';
-import { userAuth } from '@/firebase/models';
 
 export const TAB_USERS = 'users';
 export const TAB_ROOMS = 'rooms';
@@ -19,12 +21,28 @@ const TAB_LIST: ITab[] = [
 ];
 
 const Main = () => {
-  const { query } = useRouter();
+  const { query, push } = useRouter();
 
   const selctedTab = useMemo(() => query.tab || TAB_USERS, [query]);
 
   const handleSignOut = useCallback(() => {
     userAuth.signOut();
+  }, []);
+
+  const handleCreatRoom = useCallback(async (guestuser: IUser) => {
+    try {
+      const currentUser = await userAuth.getCurrentUser();
+      const createdRoom = await roomsDB.createRoom();
+
+      const roomId = createdRoom.key;
+
+      await roomsDB.inviteUser(roomId, currentUser);
+      await roomsDB.inviteUser(roomId, guestuser);
+
+      push(`/chat/${roomId}`);
+    } catch (error) {
+      alert(error.message);
+    }
   }, []);
 
   const TabButton = useCallback(
@@ -53,7 +71,7 @@ const Main = () => {
         })}
       </div>
       <div className={styles.content}>
-        {selctedTab === TAB_USERS && <AllUserList />}
+        {selctedTab === TAB_USERS && <AllUserList onDoubleClickUser={handleCreatRoom} />}
         {selctedTab === TAB_ROOMS && <MyChatRooms />}
       </div>
       <Button color="white" onClick={handleSignOut}>
