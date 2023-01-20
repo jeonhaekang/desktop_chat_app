@@ -1,0 +1,7 @@
+@use '@/styles/mixins/position';
+
+.rootContainer {
+  @include position.posCenter;
+  width: 100%;
+  padding: 16px;
+}
