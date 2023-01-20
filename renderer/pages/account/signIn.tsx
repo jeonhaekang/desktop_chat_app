@@ -1,11 +1,14 @@
-import { Button, Input } from '@/components';
-import { useForm } from '@/hooks';
 import styles from '@/styles/pages/account/signIn.module.scss';
-import { ISignIn } from '@/types/account';
+
 import { FormEvent, Fragment, useCallback } from 'react';
+import { useForm } from '@/hooks';
+
+import { ISignInForm } from '@/types/account';
+
+import { Button, Input } from '@/components';
 
 const SignIn = () => {
-  const { register, formData, isValid } = useForm<ISignIn>({
+  const { register, formData, isValid } = useForm<ISignInForm>({
     email: '',
     password: '',
     displayName: '',
