@@ -1,5 +1,5 @@
 import { IUser } from '@/types/account';
-import { getDatabase, push, ref, set } from 'firebase/database';
+import { get, getDatabase, push, ref, set } from 'firebase/database';
 import Base from './Base';
 
 class RoomsDB extends Base {
@@ -17,6 +17,12 @@ class RoomsDB extends Base {
     const userRef = ref(this.db, `Rooms/${roomId}/${uid}`);
 
     return set(userRef, { displayName });
+  }
+
+  getRoom(roomId: string) {
+    const roomRef = ref(this.db, `Rooms/${roomId}`);
+
+    return get(roomRef);
   }
 }
 

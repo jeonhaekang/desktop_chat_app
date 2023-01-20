@@ -4,4 +4,8 @@ interface IMessage extends IUser {
   message: string;
 }
 
-export { IMessage };
+interface IUserRooms {
+  lastMessage: string;
+}
+
+export { IMessage, IUserRooms };

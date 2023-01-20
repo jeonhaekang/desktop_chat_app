@@ -1,11 +1,13 @@
 import styles from '@/styles/pages/chat/components/messageSend.module.scss';
 
+import { FormEvent, useCallback, useMemo } from 'react';
 import { useForm, useRouter } from '@/hooks';
 
-import { Button, Input } from '@/components';
-import { FormEvent, useCallback, useMemo } from 'react';
-import { alertError, messagesDB, userAuth } from '@/firebase/models';
+import { alertError, messagesDB, roomsDB, userAuth, userRoomsDB } from '@/firebase/models';
+
 import { IMessage } from '@/types/chat';
+
+import { Button, Input } from '@/components';
 
 const MessageSend = () => {
   const { query } = useRouter();
@@ -31,6 +33,14 @@ const MessageSend = () => {
 
       try {
         await messagesDB.sendMessage(roomId, formData);
+
+        const roomSnapShot = await roomsDB.getRoom(roomId);
+
+        roomSnapShot.forEach((userSnapShot) => {
+          const uid = userSnapShot.key;
+
+          userRoomsDB.sendAlert(uid, roomId, { lastMessage: formData.message });
+        });
         reset();
       } catch (error) {
         alertError(error);
