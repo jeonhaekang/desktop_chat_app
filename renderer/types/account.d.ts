@@ -12,4 +12,9 @@ interface IProfile {
   photoURL?: string;
 }
 
-export { ISignIn, ISignInForm, IProfile };
+interface IUser {
+  uid: string;
+  displayName: string;
+}
+
+export { ISignIn, ISignInForm, IProfile, IUser };

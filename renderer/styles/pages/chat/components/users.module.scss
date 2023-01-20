@@ -1,0 +1,17 @@
+@use '@/styles/mixins/typography';
+@use '@/styles/constants/colors';
+
+.users {
+  display: flex;
+  flex-direction: column;
+}
+
+.user {
+  @include typography.content3;
+  padding: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: colors.$B_BG;
+  }
+}

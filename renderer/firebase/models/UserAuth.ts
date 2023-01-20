@@ -34,6 +34,10 @@ class UserAuth extends Base {
 
     return updateProfile(currentUser, profile);
   }
+
+  getCurrentUser() {
+    return this.auth.currentUser;
+  }
 }
 
 const userAuth = new UserAuth();
