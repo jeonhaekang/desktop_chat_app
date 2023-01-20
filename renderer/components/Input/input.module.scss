@@ -1,0 +1,46 @@
+@use '/src/styles/mixins/typography';
+@use '/src/styles/constants/colors';
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input {
+  @include typography.paragraph3;
+  height: 42px;
+  padding: 0 12px;
+  background-color: colors.$WHITE;
+  border: 1px solid colors.$GS_BORDER;
+  border-radius: 8px;
+  transition: 200ms;
+
+  &:hover {
+    border-color: colors.$GS_CONTENT_3;
+  }
+
+  &:focus {
+    border-color: colors.$B_BASE;
+    box-shadow: colors.$FS_BLUE;
+  }
+
+  &.error {
+    border-color: colors.$R_BASE;
+    box-shadow: colors.$FS_RED;
+  }
+}
+
+.title {
+  @include typography.paragraph2;
+
+  & .required {
+    margin-left: 4px;
+    color: colors.$R_BASE;
+  }
+}
+
+.description {
+  @include typography.paragraph3;
+  color: colors.$GS_CONTENT_3;
+}
