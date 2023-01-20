@@ -10,9 +10,10 @@ import { IUser } from '@/types/account';
 
 interface IProps {
   onDoubleClickUser: (user: IUser) => void;
+  blackListIds?: string[];
 }
 
-const AllUserList = ({ onDoubleClickUser }: IProps) => {
+const AllUserList = ({ onDoubleClickUser, blackListIds }: IProps) => {
   const [users, setUsers] = useState<IUser[]>([]);
 
   useMount(async () => {
@@ -41,6 +42,10 @@ const AllUserList = ({ onDoubleClickUser }: IProps) => {
     <ul className={styles.users}>
       {users.map((user) => {
         const { uid, displayName } = user;
+
+        if (blackListIds && blackListIds.includes(uid)) {
+          return null;
+        }
 
         return (
           <li key={uid} className={styles.user} onDoubleClick={() => onDoubleClickUser(user)}>

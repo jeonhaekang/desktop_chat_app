@@ -1,6 +1,6 @@
 import styles from '@/styles/pages/chat/room.module.scss';
 
-import { useRouter } from '@/utils/hooks';
+import { useMount, useRouter } from '@/utils/hooks';
 
 import { Button } from '@/components';
 import MessageSend from '@/pages/chat/components/MessageSend';
@@ -10,11 +10,16 @@ import { useCallback, useMemo, useState } from 'react';
 import { IUser } from '@/types/account';
 import { roomsDB } from '@/firebase/models';
 import cn from '@/styles';
+import { filterKeyOfArr } from '@/utils/common';
 
 const Room = () => {
   const { back, query } = useRouter();
 
+  const [users, setUsers] = useState<IUser[]>([]);
   const [openUserList, setOpenUserList] = useState(false);
+
+  const userNameList = useMemo(() => filterKeyOfArr<IUser>(users, 'displayName'), [users]);
+  const userIdList = useMemo(() => filterKeyOfArr<IUser>(users, 'uid'), [users]);
 
   const roomId = useMemo(() => {
     const roomId = query.roomId;
@@ -30,19 +35,29 @@ const Room = () => {
     setOpenUserList((prev) => !prev);
   }, []);
 
+  useMount(() => {
+    roomsDB.subscribe(roomId, (usersSnapShot) => {
+      const userList: IUser[] = Object.values(usersSnapShot.val());
+
+      setUsers(userList);
+    });
+  });
+
   return (
     <div className={cn(styles.room, { [styles.openUserList]: openUserList })}>
       <MessageHistory />
 
+      <div className={styles.userList}>{userNameList.join(', ')}</div>
+
       <MessageSend />
 
       <Button color={'white'} onClick={() => back()}>
-        나가기
+        뒤로가기
       </Button>
 
       <Button onClick={handleOpenState}>{openUserList ? '닫기' : '초대하기'}</Button>
 
-      {openUserList && <AllUserList onDoubleClickUser={handleInvite} />}
+      {openUserList && <AllUserList onDoubleClickUser={handleInvite} blackListIds={userIdList} />}
     </div>
   );
 };

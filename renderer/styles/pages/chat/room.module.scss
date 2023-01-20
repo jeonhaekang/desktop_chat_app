@@ -3,12 +3,19 @@
 
 .room {
   display: grid;
-  grid-template-rows: 1fr auto auto auto;
+  grid-template-rows: 1fr auto auto auto auto;
   gap: 12px;
   height: 100%;
   transition: 300ms;
 
+  .userList {
+    @include typography.content3;
+    display: flex;
+    gap: 12px;
+    overflow-x: scroll;
+  }
+
   &.openUserList {
-    grid-template-rows: 1fr auto auto auto minmax(0, 1fr);
+    grid-template-rows: 1fr auto auto auto auto minmax(0, 100px);
   }
 }
