@@ -12,11 +12,9 @@ class RoomsDB extends Base {
   }
 
   inviteUser(roomId: string, user: IUser) {
-    const { uid, displayName } = user;
+    const userRef = ref(this.db, `Rooms/${roomId}/${user.uid}`);
 
-    const userRef = ref(this.db, `Rooms/${roomId}/${uid}`);
-
-    return set(userRef, { displayName });
+    return set(userRef, user);
   }
 
   getRoom(roomId: string) {

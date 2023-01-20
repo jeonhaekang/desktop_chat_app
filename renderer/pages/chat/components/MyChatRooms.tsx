@@ -18,9 +18,11 @@ const MyChatRooms = () => {
       const currentUser = await userAuth.getCurrentUser();
 
       userRoomsDB.subscribe(currentUser.uid, (roomSnapShot: DataSnapshot) => {
-        const rooms: IUserRooms[] = Object.values(roomSnapShot.val());
+        if (roomSnapShot.val()) {
+          const rooms: IUserRooms[] = Object.values(roomSnapShot.val());
 
-        setRooms(rooms);
+          setRooms(rooms);
+        }
       });
     } catch (error) {
       alert(error);

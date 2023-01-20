@@ -5,6 +5,8 @@ import { useForm, useRouter } from '@/hooks';
 
 import { messagesDB, roomsDB, userAuth, userRoomsDB } from '@/firebase/models';
 
+import { IUser } from '@/types/account';
+
 import { Button, Input } from '@/components';
 
 const MessageSend = () => {
@@ -27,11 +29,12 @@ const MessageSend = () => {
         await messagesDB.sendMessage(roomId, { ...currentUser, ...formData });
 
         const roomSnapShot = await roomsDB.getRoom(roomId);
+        const roomUserDataList: IUser[] = Object.values(roomSnapShot.val());
 
         roomSnapShot.forEach((userSnapShot) => {
           const uid = userSnapShot.key;
 
-          userRoomsDB.sendAlert(uid, roomId, { lastMessage: formData.message, roomId });
+          userRoomsDB.sendAlert(uid, roomId, { lastMessage: formData.message, roomId, users: roomUserDataList });
         });
         reset();
       } catch (error) {
