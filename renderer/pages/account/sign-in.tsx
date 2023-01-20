@@ -55,7 +55,7 @@ const SignIn = () => {
         <Button type="submit" disabled={!isValid}>
           회원가입
         </Button>
-        <Link href="/account/sing-up">
+        <Link href="/account/sign-up">
           <Button color="white">로그인</Button>
         </Link>
       </form>
