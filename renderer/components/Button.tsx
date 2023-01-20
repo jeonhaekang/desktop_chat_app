@@ -1,5 +1,5 @@
-import styles from '../styles/components/button.module.scss';
-import cn from '../styles';
+import styles from '@/styles/components/button.module.scss';
+import cn from '@/styles/index';
 
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 

@@ -1,5 +1,5 @@
-@use '/src/styles/mixins/typography';
-@use '/src/styles/constants/colors';
+@use '@/styles/constants/colors';
+@use '@/styles/mixins/typography';
 
 .inputBox {
   display: flex;
@@ -8,7 +8,7 @@
 }
 
 .input {
-  @include typography.paragraph3;
+  @include typography.content3;
   height: 42px;
   padding: 0 12px;
   background-color: colors.$WHITE;
@@ -32,7 +32,7 @@
 }
 
 .title {
-  @include typography.paragraph2;
+  @include typography.content2;
 
   & .required {
     margin-left: 4px;
@@ -41,6 +41,6 @@
 }
 
 .description {
-  @include typography.paragraph3;
+  @include typography.content3;
   color: colors.$GS_CONTENT_3;
 }
