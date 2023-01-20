@@ -36,6 +36,7 @@ const SignIn = () => {
 
       <form className={styles.form} onSubmit={handleSignIn}>
         <Input type="email" title="이메일" description="이메일을 입력해 주세요." required {...register('email')} />
+
         <Input
           type="password"
           title="비밀번호"
@@ -44,6 +45,7 @@ const SignIn = () => {
           required
           {...register('password')}
         />
+
         <Input
           title="닉네임"
           description="최소 2자, 최대 8자를 허용합니다."
@@ -52,9 +54,11 @@ const SignIn = () => {
           required
           {...register('displayName')}
         />
+
         <Button type="submit" disabled={!isValid}>
           회원가입
         </Button>
+        
         <Link href="/account/sign-up">
           <Button color="white">로그인</Button>
         </Link>
