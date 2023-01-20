@@ -1,0 +1,14 @@
+@use '@/styles/mixins/flexbox';
+@use '@/styles/mixins/position';
+@use '@/styles/mixins/typography';
+
+.title {
+  @include typography.head3(400);
+  margin-bottom: 36px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
