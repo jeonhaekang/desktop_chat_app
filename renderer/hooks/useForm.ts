@@ -2,7 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 
 const useForm = <T>(init: T) => {
   const [isValid, setIsValid] = useState(false);
-  const [form, setForm] = useState(init);
+  const [formData, setFormData] = useState(init);
 
   const inputs = useRef(new Map());
 
@@ -24,7 +24,7 @@ const useForm = <T>(init: T) => {
     (e: ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
 
-      setForm((prev) => {
+      setFormData((prev) => {
         return { ...prev, [name]: value };
       });
 
@@ -38,22 +38,22 @@ const useForm = <T>(init: T) => {
       return {
         name,
         onChange: setValue,
-        value: form[name],
+        value: formData[name],
         ref: (el: HTMLInputElement) => inputs.current.set(name, el),
       };
     },
-    [form, setValue]
+    [formData, setValue]
   );
 
   const reset = useCallback(() => {
-    setForm(init);
+    setFormData(init);
   }, [init]);
 
   useEffect(() => {
     validation();
   }, [validation]);
 
-  return { isValid, form, register, reset };
+  return { isValid, formData, register, reset };
 };
 
 export default useForm;
