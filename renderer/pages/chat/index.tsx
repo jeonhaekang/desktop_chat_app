@@ -71,7 +71,11 @@ const Main = () => {
         })}
       </div>
       <div className={styles.content}>
-        {selctedTab === TAB_USERS && <AllUserList onDoubleClickUser={handleCreatRoom} />}
+        {selctedTab === TAB_USERS && (
+          <div className={styles.userList}>
+            <AllUserList onDoubleClickUser={handleCreatRoom} />
+          </div>
+        )}
         {selctedTab === TAB_ROOMS && <MyChatRooms />}
       </div>
       <Button color="white" onClick={handleSignOut}>

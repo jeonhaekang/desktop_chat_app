@@ -3,7 +3,12 @@
 
 .room {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr auto auto auto;
   gap: 12px;
   height: 100%;
+  transition: 300ms;
+
+  &.openUserList {
+    grid-template-rows: 1fr auto auto auto minmax(0, 1fr);
+  }
 }
