@@ -29,9 +29,12 @@ const AllUserList = ({ onDoubleClickUser, blackListIds }: IProps) => {
 
       usersDB.subscribe((usersSnapShot: DataSnapshot) => {
         const updatedUser = usersSnapShot.val();
-        delete updatedUser[currentUser.uid];
 
-        setUsers(Object.values(updatedUser));
+        if (updatedUser) {
+          delete updatedUser[currentUser.uid];
+
+          setUsers(Object.values(updatedUser));
+        }
       });
     } catch (error) {
       alert(error.message);

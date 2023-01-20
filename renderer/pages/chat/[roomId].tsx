@@ -37,9 +37,11 @@ const Room = () => {
 
   useMount(() => {
     roomsDB.subscribe(roomId, (usersSnapShot) => {
-      const userList: IUser[] = Object.values(usersSnapShot.val());
+      if (usersSnapShot.val()) {
+        const userList: IUser[] = Object.values(usersSnapShot.val());
 
-      setUsers(userList);
+        setUsers(userList);
+      }
     });
   });
 

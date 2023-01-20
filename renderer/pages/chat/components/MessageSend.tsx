@@ -25,6 +25,8 @@ const MessageSend = () => {
       e.preventDefault();
 
       try {
+        reset();
+
         const currentUser = await userAuth.getCurrentUser();
         await messagesDB.sendMessage(roomId, { ...currentUser, ...formData });
 
@@ -36,7 +38,6 @@ const MessageSend = () => {
 
           userRoomsDB.sendAlert(uid, roomId, { lastMessage: formData.message, roomId, users: roomUserDataList });
         });
-        reset();
       } catch (error) {
         alert(error);
       }
