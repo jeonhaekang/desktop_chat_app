@@ -2,7 +2,7 @@ import styles from '@/styles/pages/chat/components/messageHistory.module.scss';
 import cn from '@/styles';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useMount, useRouter } from '@/hooks';
+import { useMount, useRouter } from '@/utils/hooks';
 
 import { messagesDB, userAuth } from '@/firebase/models';
 import { DataSnapshot } from 'firebase/database';

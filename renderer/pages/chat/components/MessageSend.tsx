@@ -1,7 +1,7 @@
 import styles from '@/styles/pages/chat/components/messageSend.module.scss';
 
 import { FormEvent, useCallback, useMemo } from 'react';
-import { useForm, useRouter } from '@/hooks';
+import { useForm, useRouter } from '@/utils/hooks';
 
 import { messagesDB, roomsDB, userAuth, userRoomsDB } from '@/firebase/models';
 

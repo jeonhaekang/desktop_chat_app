@@ -1,6 +1,6 @@
 import styles from '@/styles/pages/chat/room.module.scss';
 
-import { useRouter } from '@/hooks';
+import { useRouter } from '@/utils/hooks';
 
 import { Button } from '@/components';
 import MessageSend from '@/pages/chat/components/MessageSend';

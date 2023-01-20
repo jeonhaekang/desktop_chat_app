@@ -1,7 +1,7 @@
 import styles from '@/styles/pages/chat/main.module.scss';
 
 import { useCallback, useMemo } from 'react';
-import { useRouter } from '@/hooks';
+import { useRouter } from '@/utils/hooks';
 
 import { ITab } from '@/types/main';
 

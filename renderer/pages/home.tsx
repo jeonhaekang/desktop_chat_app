@@ -1,4 +1,4 @@
-import { useMount, useRouter } from '@/hooks';
+import { useMount, useRouter } from '@/utils/hooks';
 
 import { userAuth } from '@/firebase/models';
 

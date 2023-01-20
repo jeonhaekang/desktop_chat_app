@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { useMount, useRouter } from '@/hooks';
+import { useMount, useRouter } from '@/utils/hooks';
 
 import { userAuth } from '@/firebase/models';
 import { IUser } from '@/types/account';

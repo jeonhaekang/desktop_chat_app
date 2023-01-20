@@ -1,7 +1,7 @@
 import styles from '@/styles/pages/chat/components/rooms.module.scss';
 
 import { useMemo, useState } from 'react';
-import { useMount, useRouter } from '@/hooks';
+import { useMount, useRouter } from '@/utils/hooks';
 
 import { userAuth, userRoomsDB } from '@/firebase/models';
 import { DataSnapshot } from 'firebase/database';
@@ -12,6 +12,8 @@ const MyChatRooms = () => {
   const { push } = useRouter();
 
   const [rooms, setRooms] = useState<IUserRooms[]>([]);
+
+  console.log(rooms);
 
   useMount(async () => {
     try {

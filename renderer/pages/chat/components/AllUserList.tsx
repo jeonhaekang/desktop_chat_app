@@ -1,7 +1,7 @@
 import styles from '@/styles/pages/chat/components/users.module.scss';
 
 import { useCallback, useState } from 'react';
-import { useMount, useRouter } from '@/hooks';
+import { useMount, useRouter } from '@/utils/hooks';
 
 import { roomsDB, userAuth, usersDB } from '@/firebase/models';
 import { DataSnapshot } from 'firebase/database';
