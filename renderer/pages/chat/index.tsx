@@ -1,10 +1,11 @@
 import styles from '@/styles/pages/chat/main.module.scss';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo } from 'react';
+import { useRouter } from '@/hooks';
 
-import { ITab, TTab } from '@/types/main';
+import { ITab } from '@/types/main';
 
-import { Button } from '@/components';
+import { Button, Link } from '@/components';
 import AllUserList from '@/pages/chat/components/AllUserList';
 import MyChatRooms from '@/pages/chat/components/MyChatRooms';
 
@@ -17,19 +18,26 @@ const TAB_LIST: ITab[] = [
 ];
 
 const Main = () => {
-  const [selectedTab, setSelectedTab] = useState<TTab>(TAB_USERS);
+  const { query } = useRouter();
+
+  const selctedTab = useMemo(() => query.tab || TAB_USERS, [query]);
 
   const TabButton = useCallback(
     (props: ITab) => {
       const { tab, name } = props;
 
       return (
-        <Button color={tab === selectedTab ? 'blue' : 'white'} onClick={() => setSelectedTab(tab)}>
-          {name}
-        </Button>
+        <Link
+          href={{
+            pathname: '/chat',
+            query: { tab },
+          }}
+        >
+          <Button color={selctedTab === tab ? 'blue' : 'white'}>{name}</Button>
+        </Link>
       );
     },
-    [selectedTab]
+    [selctedTab]
   );
 
   return (
@@ -40,8 +48,8 @@ const Main = () => {
         })}
       </div>
       <div className={styles.content}>
-        {selectedTab === TAB_USERS && <AllUserList />}
-        {selectedTab === TAB_ROOMS && <MyChatRooms />}
+        {selctedTab === TAB_USERS && <AllUserList />}
+        {selctedTab === TAB_ROOMS && <MyChatRooms />}
       </div>
     </div>
   );
