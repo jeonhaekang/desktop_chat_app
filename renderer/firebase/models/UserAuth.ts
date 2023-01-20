@@ -1,5 +1,5 @@
 import Base from './Base';
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { IProfile, ISignIn } from '@/types/account';
 
 class UserAuth extends Base {
@@ -9,6 +9,12 @@ class UserAuth extends Base {
     const { email, password } = account;
 
     return createUserWithEmailAndPassword(this.auth, email, password);
+  }
+
+  signUp(account: ISignIn) {
+    const { email, password } = account;
+
+    return signInWithEmailAndPassword(this.auth, email, password);
   }
 
   profileUpdate(profile: IProfile) {
