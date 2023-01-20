@@ -2,7 +2,6 @@
 @use '@/styles/constants/colors';
 
 .rooms {
-  @include typography.content3;
   position: absolute;
   top: 0;
   left: 0;
@@ -18,4 +17,16 @@
   padding: 12px;
   border: 1px solid colors.$GS_BORDER;
   border-radius: 8px;
+}
+
+.users {
+  @include typography.content3;
+  @include typography.lineClamp(1, 18px);
+}
+
+.lastMessage {
+  @include typography.content4;
+  @include typography.lineClamp(2, 32px);
+  margin-top: 8px;
+  color: colors.$GS_CONTENT_2;
 }
