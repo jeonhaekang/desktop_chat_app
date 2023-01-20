@@ -15,7 +15,7 @@ const Room = () => {
 
       <MessageSend />
 
-      <Button color={'red'} onClick={() => back()}>
+      <Button color={'white'} onClick={() => back()}>
         나가기
       </Button>
     </div>
