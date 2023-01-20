@@ -1,9 +1,21 @@
 import Base from './Base';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  NextOrObserver,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  updateProfile,
+  User,
+} from 'firebase/auth';
 import { IProfile, ISignIn } from '@/types/account';
 
 class UserAuth extends Base {
   auth = getAuth();
+
+  subscribe(onChangeAuth: NextOrObserver<User>) {
+    onAuthStateChanged(this.auth, onChangeAuth);
+  }
 
   signIn(account: ISignIn) {
     const { email, password } = account;

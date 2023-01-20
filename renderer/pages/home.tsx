@@ -1,17 +1,17 @@
-import React from "react";
-import Head from "next/head";
-import Link from "next/link";
+import { useMount, useRouter } from '@/hooks';
+
+import { userAuth } from '@/firebase/models';
 
 function Home() {
-  return (
-    <React.Fragment>
-      <Head>
-        <title>메인페이지</title>
-      </Head>
+  const router = useRouter();
 
-      <div>메인페이지</div>
-    </React.Fragment>
-  );
+  useMount(() => {
+    userAuth.subscribe((currentUser) => {
+      router.push(currentUser ? '/chat/main' : '/account/signup');
+    });
+  });
+
+  return null;
 }
 
 export default Home;
