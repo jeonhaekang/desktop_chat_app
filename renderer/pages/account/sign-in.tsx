@@ -7,8 +7,7 @@ import { alertError, userAuth } from '@/firebase/models';
 
 import { ISignInForm } from '@/types/account';
 
-import { Button, Input } from '@/components';
-import Link from 'next/link';
+import { Button, Input, Link } from '@/components';
 
 const SignIn = () => {
   const { register, formData, isValid } = useForm<ISignInForm>({
