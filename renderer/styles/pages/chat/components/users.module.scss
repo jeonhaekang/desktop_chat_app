@@ -4,6 +4,9 @@
 .users {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  border: 1px solid colors.$GS_BORDER;
+  border-radius: 8px;
 }
 
 .user {
