@@ -25,7 +25,7 @@ Authentication을 통해 로그인과 회원가입을, realtime database를 통�
 
 ### How To Use
 ---
-> **warning** : 이 레포지토리를 클론, 실행하기 위해서는 `git`, `Node.js` 그리고 `yarn`이 설치되어 있어야 합니다.
+> **Warning** : 이 레포지토리를 클론, 실행하기 위해서는 `git`, `Node.js` 그리고 `yarn`이 설치되어 있어야 합니다.
 
 ```
 # clone this repository
