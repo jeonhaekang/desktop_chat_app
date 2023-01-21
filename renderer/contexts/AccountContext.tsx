@@ -19,6 +19,8 @@ export const AccountContextProvider = ({ children }: { children: ReactNode }) =>
         setCurrentUser({ uid, displayName });
       } else {
         push('/');
+
+        setCurrentUser(null);
       }
     });
   });
