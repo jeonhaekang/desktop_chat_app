@@ -56,8 +56,10 @@ const Room = () => {
     try {
       const user = await userAuth.getCurrentUser();
 
-      const ref = userRoomsDB.subscribeRoom(user.uid, roomId, () => {
-        userRoomsDB.updatedChecked(user.uid, roomId, true);
+      const ref = userRoomsDB.subscribeRoom(user.uid, roomId, (roomSnapShot) => {
+        if (roomSnapShot.val()) {
+          userRoomsDB.updatedChecked(user.uid, roomId, true);
+        }
       });
 
       subscribeRef.current.push(ref);
