@@ -70,6 +70,7 @@ const Main = () => {
           return <TabButton key={tab.tab} {...tab} />;
         })}
       </div>
+
       <div className={styles.content}>
         {selctedTab === TAB_USERS && (
           <div className={styles.userList}>
@@ -78,6 +79,7 @@ const Main = () => {
         )}
         {selctedTab === TAB_ROOMS && <MyChatRooms />}
       </div>
+
       <Button color="white" onClick={handleSignOut}>
         로그아웃
       </Button>

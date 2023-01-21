@@ -13,12 +13,12 @@ export const AccountContextProvider = ({ children }: { children: ReactNode }) =>
 
   useMount(() => {
     userAuth.subscribe((currentUser) => {
-      push(currentUser ? '/chat' : '/account/sign-up');
-
       if (currentUser) {
         const { uid, displayName } = currentUser;
 
         setCurrentUser({ uid, displayName });
+      } else {
+        push('/');
       }
     });
   });

@@ -1,7 +1,7 @@
 import styles from '@/styles/pages/account/signUp.module.scss';
 
 import { FormEvent, Fragment, useCallback } from 'react';
-import { useForm } from '@/utils/hooks';
+import { useForm, useRouter } from '@/utils/hooks';
 
 import { userAuth } from '@/firebase/models';
 
@@ -10,6 +10,8 @@ import { ISignIn } from '@/types/account';
 import { Button, Input, Link } from '@/components';
 
 const SignUp = () => {
+  const { push } = useRouter();
+
   const { register, formData, isValid } = useForm<ISignIn>({
     email: '',
     password: '',
@@ -21,6 +23,8 @@ const SignUp = () => {
 
       try {
         await userAuth.signUp(formData);
+
+        push(`/chat`);
       } catch (error) {
         alert(error);
       }
