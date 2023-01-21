@@ -20,12 +20,7 @@ const AllUserList = ({ onDoubleClickUser, blackListIds }: IProps) => {
     try {
       const currentUser = await userAuth.getCurrentUser();
 
-      const userSnapShot = await usersDB.getUser(currentUser.uid);
-      const userCheck = userSnapShot.val();
-
-      if (!userCheck) {
-        await usersDB.setUser(currentUser);
-      }
+      await usersDB.setUser(currentUser);
 
       usersDB.subscribe((usersSnapShot: DataSnapshot) => {
         const updatedUser = usersSnapShot.val();
