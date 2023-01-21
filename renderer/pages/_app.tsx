@@ -1,5 +1,6 @@
 import styles from '@/styles/pages/app.module.scss';
 import '@/styles/index.scss';
+
 import { AccountContextProvider } from '@/contexts/AccountContext';
 
 const App = ({ Component, pageProps }) => {

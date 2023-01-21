@@ -5,3 +5,9 @@
   padding: 12px;
   overflow: hidden;
 }
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
