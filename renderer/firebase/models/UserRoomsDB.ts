@@ -1,6 +1,6 @@
 import { IUserRooms } from '@/types/chat';
 import { TSnapShot } from '@/types/model';
-import { getDatabase, onValue, ref, set } from 'firebase/database';
+import { getDatabase, onChildAdded, onChildChanged, onValue, ref, set } from 'firebase/database';
 import Base from './Base';
 
 class UserRoomsDB extends Base {
@@ -9,7 +9,13 @@ class UserRoomsDB extends Base {
   subscribe(uid: string, onAdded: TSnapShot) {
     const messageRef = ref(this.db, `/UserRooms/${uid}`);
 
-    onValue(messageRef, onAdded);
+    onChildAdded(messageRef, onAdded);
+  }
+
+  subscribeRoom(uid: string, roomId: string, onAdded: TSnapShot) {
+    const roomRef = ref(this.db, `/UserRooms/${uid}/${roomId}`);
+
+    onValue(roomRef, onAdded);
   }
 
   sendAlert(uid: string, roomId: string, data: IUserRooms) {
