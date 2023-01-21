@@ -16,6 +16,8 @@ class UserRoomsDB extends Base {
     const roomRef = ref(this.db, `/UserRooms/${uid}/${roomId}`);
 
     onValue(roomRef, onAdded);
+
+    return roomRef;
   }
 
   setRoom(uid: string, roomId: string, data: IUserRooms) {

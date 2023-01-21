@@ -10,6 +10,8 @@ class RoomsDB extends Base {
     const roomRef = ref(this.db, `Rooms/${roomId}`);
 
     onValue(roomRef, onChange);
+
+    return roomRef;
   }
 
   createRoom() {

@@ -4,7 +4,7 @@ import cn from '@/styles';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useMount, useRouter } from '@/utils/hooks';
 
-import { messagesDB, userAuth, userRoomsDB, usersDB } from '@/firebase/models';
+import { messagesDB } from '@/firebase/models';
 import { DataSnapshot } from 'firebase/database';
 
 import { IMessage } from '@/types/chat';
@@ -29,10 +29,6 @@ const MessageHistory = () => {
       const message = messageSnapShot.val();
 
       setMessages((prev) => [...prev, message]);
-
-      const user = await userAuth.getCurrentUser();
-
-      userRoomsDB.updatedChecked(user.uid, roomId, true);
     });
   });
 

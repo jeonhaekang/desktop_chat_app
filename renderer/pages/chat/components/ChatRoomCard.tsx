@@ -14,10 +14,10 @@ import cn from '@/styles';
 const ChatRoomCard = (props: IUserRooms) => {
   const { push } = useRouter();
 
-  const [roomData, setRoomData] = useState(props);
+  const [roomData, setRoomData] = useState<IUserRooms>(props);
 
   const roomMemberNames = useMemo(() => {
-    return filterKeyOfArr<IUser>(roomData.users, 'displayName').join(' , ');
+    return filterKeyOfArr<IUser>(roomData.users || [], 'displayName').join(' , ');
   }, [roomData]);
 
   useMount(async () => {
