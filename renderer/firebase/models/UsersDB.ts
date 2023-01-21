@@ -10,6 +10,8 @@ class UsersDB extends Base {
     const usersRef = ref(this.db, 'Users');
 
     onValue(usersRef, onChange);
+
+    return usersRef;
   }
 
   getUser(uid: string) {

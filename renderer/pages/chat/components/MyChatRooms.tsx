@@ -1,18 +1,18 @@
 import styles from '@/styles/pages/chat/components/rooms.module.scss';
 
-import { useState } from 'react';
-import { useMount, useRouter } from '@/utils/hooks';
+import { useRef, useState } from 'react';
+import { useMount, useUnmount } from '@/utils/hooks';
 
 import { userAuth, userRoomsDB } from '@/firebase/models';
-import { DataSnapshot } from 'firebase/database';
+import { DataSnapshot, off } from 'firebase/database';
 
 import { IUserRooms } from '@/types/chat';
 import ChatRoomCard from '@/pages/chat/components/ChatRoomCard';
 
 const MyChatRooms = () => {
-  const { push } = useRouter();
-
   const [rooms, setRooms] = useState<IUserRooms[]>([]);
+
+  const subscribeRef = useRef([]);
 
   useMount(async () => {
     try {
@@ -28,6 +28,10 @@ const MyChatRooms = () => {
     } catch (error) {
       alert(error);
     }
+  });
+
+  useUnmount(() => {
+    subscribeRef.current.forEach((ref) => off(ref));
   });
 
   return (

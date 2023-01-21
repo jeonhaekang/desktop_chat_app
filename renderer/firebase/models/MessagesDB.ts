@@ -10,6 +10,8 @@ class MessagesDB extends Base {
     const roomRef = ref(this.db, `Messages/${roomId}`);
 
     onChildAdded(roomRef, onAdded);
+
+    return roomRef;
   }
 
   sendMessage(roomId: string, message: IMessage) {

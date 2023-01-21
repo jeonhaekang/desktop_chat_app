@@ -2,19 +2,21 @@ import styles from '@/styles/pages/chat/components/messageHistory.module.scss';
 import cn from '@/styles';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useMount, useRouter } from '@/utils/hooks';
+import { useMount, useRouter, useUnmount } from '@/utils/hooks';
+import { useAccount } from '@/contexts/AccountContext';
 
 import { messagesDB } from '@/firebase/models';
-import { DataSnapshot } from 'firebase/database';
+import { DataSnapshot, off } from 'firebase/database';
 
 import { IMessage } from '@/types/chat';
-import { useAccount } from '@/contexts/AccountContext';
 
 const MessageHistory = () => {
   const { query } = useRouter();
   const currentUser = useAccount();
 
   const [messages, setMessages] = useState<IMessage[]>([]);
+
+  const subscribeRef = useRef([]);
 
   const roomId = useMemo(() => {
     const roomId = query.roomId;
@@ -30,6 +32,10 @@ const MessageHistory = () => {
 
       setMessages((prev) => [...prev, message]);
     });
+  });
+
+  useUnmount(() => {
+    subscribeRef.current.forEach((ref) => off(ref));
   });
 
   useEffect(() => {

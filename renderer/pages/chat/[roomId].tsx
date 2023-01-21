@@ -5,7 +5,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { useMount, useRouter, useUnmount } from '@/utils/hooks';
 import { filterKeyOfArr } from '@/utils/common';
 
-import { DataSnapshot, off } from 'firebase/database';
+import { off } from 'firebase/database';
 import { roomsDB, userAuth, userRoomsDB } from '@/firebase/models';
 
 import { IUser } from '@/types/account';
@@ -56,7 +56,7 @@ const Room = () => {
     try {
       const user = await userAuth.getCurrentUser();
 
-      const ref = userRoomsDB.subscribeRoom(user.uid, roomId, (SnapShot: DataSnapshot) => {
+      const ref = userRoomsDB.subscribeRoom(user.uid, roomId, () => {
         userRoomsDB.updatedChecked(user.uid, roomId, true);
       });
 

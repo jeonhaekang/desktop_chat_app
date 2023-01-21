@@ -1,10 +1,10 @@
 import styles from '@/styles/pages/chat/components/users.module.scss';
 
-import { useState } from 'react';
-import { useMount } from '@/utils/hooks';
+import { useRef, useState } from 'react';
+import { useMount, useUnmount } from '@/utils/hooks';
 
 import { userAuth, usersDB } from '@/firebase/models';
-import { DataSnapshot } from 'firebase/database';
+import { DataSnapshot, off } from 'firebase/database';
 
 import { IUser } from '@/types/account';
 
@@ -16,13 +16,15 @@ interface IProps {
 const AllUserList = ({ onDoubleClickUser, blackListIds }: IProps) => {
   const [users, setUsers] = useState<IUser[]>([]);
 
+  const subscribeRef = useRef([]);
+
   useMount(async () => {
     try {
       const currentUser = await userAuth.getCurrentUser();
 
       await usersDB.setUser(currentUser);
 
-      usersDB.subscribe((usersSnapShot: DataSnapshot) => {
+      const ref = usersDB.subscribe((usersSnapShot: DataSnapshot) => {
         const updatedUser = usersSnapShot.val();
 
         if (updatedUser) {
@@ -31,9 +33,15 @@ const AllUserList = ({ onDoubleClickUser, blackListIds }: IProps) => {
           setUsers(Object.values(updatedUser));
         }
       });
+
+      subscribeRef.current.push(ref);
     } catch (error) {
       alert(error.message);
     }
+  });
+
+  useUnmount(() => {
+    subscribeRef.current.forEach((ref) => off(ref));
   });
 
   return (

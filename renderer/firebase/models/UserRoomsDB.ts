@@ -10,6 +10,8 @@ class UserRoomsDB extends Base {
     const messageRef = ref(this.db, `/UserRooms/${uid}`);
 
     onChildAdded(messageRef, onAdded);
+
+    return messageRef;
   }
 
   subscribeRoom(uid: string, roomId: string, onAdded: TSnapShot) {
