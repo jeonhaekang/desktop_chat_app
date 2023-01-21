@@ -9,6 +9,7 @@ import { DataSnapshot } from 'firebase/database';
 
 import { IUser } from '@/types/account';
 import { IUserRooms } from '@/types/chat';
+import cn from '@/styles';
 
 const ChatRoomCard = (props: IUserRooms) => {
   const { push } = useRouter();
@@ -24,8 +25,10 @@ const ChatRoomCard = (props: IUserRooms) => {
       const currentUser = await userAuth.getCurrentUser();
 
       userRoomsDB.subscribeRoom(currentUser.uid, roomData.roomId, (roomSnapShot: DataSnapshot) => {
-        if (roomSnapShot.val()) {
-          setRoomData(roomSnapShot.val());
+        const room = roomSnapShot.val();
+
+        if (room) {
+          setRoomData(room);
         }
       });
     } catch (error) {
@@ -34,7 +37,10 @@ const ChatRoomCard = (props: IUserRooms) => {
   });
 
   return (
-    <li className={styles.room} onDoubleClick={() => push(`/chat/${roomData.roomId}`)}>
+    <li
+      className={cn(styles.room, { [styles.checked]: !roomData.checked })}
+      onDoubleClick={() => push(`/chat/${roomData.roomId}`)}
+    >
       <p className={styles.users}>{roomMemberNames}</p>
       <p className={styles.lastMessage}>{roomData.lastMessage}</p>
     </li>

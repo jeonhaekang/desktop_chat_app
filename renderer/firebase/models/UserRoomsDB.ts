@@ -1,6 +1,6 @@
 import { IUserRooms } from '@/types/chat';
 import { TSnapShot } from '@/types/model';
-import { getDatabase, onChildAdded, onChildChanged, onValue, ref, set } from 'firebase/database';
+import { getDatabase, onChildAdded, onValue, ref, set, update } from 'firebase/database';
 import Base from './Base';
 
 class UserRoomsDB extends Base {
@@ -18,10 +18,16 @@ class UserRoomsDB extends Base {
     onValue(roomRef, onAdded);
   }
 
-  sendAlert(uid: string, roomId: string, data: IUserRooms) {
+  setRoom(uid: string, roomId: string, data: IUserRooms) {
     const roomRef = ref(this.db, `UserRooms/${uid}/${roomId}`);
 
     return set(roomRef, data);
+  }
+
+  updatedChecked(uid: string, roomId: string, checked: boolean) {
+    const roomRef = ref(this.db, `UserRooms/${uid}/${roomId}`);
+
+    return update(roomRef, { checked });
   }
 }
 

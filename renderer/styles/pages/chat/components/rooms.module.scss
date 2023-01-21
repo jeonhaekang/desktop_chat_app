@@ -14,9 +14,21 @@
 }
 
 .room {
+  position: relative;
   padding: 12px;
   border: 1px solid colors.$GS_BORDER;
   border-radius: 8px;
+
+  &.checked::after {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 6px;
+    height: 6px;
+    content: ' ';
+    background-color: colors.$R_BASE;
+    border-radius: 3px;
+  }
 }
 
 .users {

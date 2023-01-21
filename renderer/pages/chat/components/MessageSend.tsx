@@ -36,7 +36,12 @@ const MessageSend = () => {
         roomSnapShot.forEach((userSnapShot) => {
           const uid = userSnapShot.key;
 
-          userRoomsDB.sendAlert(uid, roomId, { lastMessage: formData.message, roomId, users: roomUserDataList });
+          userRoomsDB.setRoom(uid, roomId, {
+            lastMessage: formData.message,
+            roomId,
+            users: roomUserDataList,
+            checked: false,
+          });
         });
       } catch (error) {
         alert(error);

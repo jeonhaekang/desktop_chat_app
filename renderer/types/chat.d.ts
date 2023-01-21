@@ -8,6 +8,7 @@ interface IUserRooms {
   roomId: string;
   lastMessage: string;
   users: IUser[];
+  checked: boolean;
 }
 
 export { IMessage, IUserRooms };
