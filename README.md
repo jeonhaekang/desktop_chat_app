@@ -59,6 +59,30 @@ yarn build:win64
 * 개설된 채팅방에서 타 유저 초대 가능
 * 미확인 메세지 표시
 
+### Server
+---
+> **Note** : Firebase의 [Authentication](https://firebase.google.com/docs/auth/web/start?authuser=0&hl=ko), [Realtime Database](https://firebase.google.com/docs/database/web/start?authuser=0&hl=ko)를 사용하고 있습니다. 자세한 내용은 링크의 문서를 참조하세요.
+
+서버 연결을 위해서는 아래 양식의 파일을 필요로 합니다.
+```javascript
+// config.ts
+import { initializeApp } from 'firebase/app';
+
+const config = {
+  apiKey: 'YOUR FIREBASE API KEY',
+  authDomain: 'YOUR FIREBASE AUTH DOMAIN',
+  databaseURL: 'YOUR FIREBASE DATABASE URL',
+  projectId: 'YOUR FIREBASE PROJECT ID',
+  storageBucket: 'USER FIREBASE STORAGE BUCKET',
+  messagingSenderId: 'YOUR FIREBASE MESSAGING SENDER ID',
+  appId: 'YOUR FIREBASE APP ID',
+};
+
+const app = initializeApp(config);
+
+export default app;
+```
+
 ### Data Flow
 ---
 > **Note** : `Firebase Realtiem Database`의 data 설명 입니다.
