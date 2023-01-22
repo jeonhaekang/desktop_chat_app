@@ -6,7 +6,7 @@ import Base from './Base';
 class RoomsDB extends Base {
   db = getDatabase(this.app);
 
-  subscribe(roomId: string, onChange: TSnapShot) {
+  onRoomChanged(roomId: string, onChange: TSnapShot) {
     const roomRef = ref(this.db, `Rooms/${roomId}`);
 
     onValue(roomRef, onChange);
@@ -20,7 +20,7 @@ class RoomsDB extends Base {
     return push(roomsRef);
   }
 
-  inviteUser(roomId: string, user: IUser) {
+  setUser(roomId: string, user: IUser) {
     const userRef = ref(this.db, `Rooms/${roomId}/${user.uid}`);
 
     return set(userRef, user);

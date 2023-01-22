@@ -18,7 +18,7 @@ const MyChatRooms = () => {
     try {
       const currentUser = await userAuth.getCurrentUser();
 
-      userRoomsDB.subscribe(currentUser.uid, (roomSnapShot: DataSnapshot) => {
+      userRoomsDB.onRoomsAdded(currentUser.uid, (roomSnapShot: DataSnapshot) => {
         if (roomSnapShot.val()) {
           const room: IUserRooms = roomSnapShot.val();
 

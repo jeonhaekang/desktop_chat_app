@@ -28,7 +28,7 @@ const MessageSend = () => {
         reset();
 
         const currentUser = await userAuth.getCurrentUser();
-        await messagesDB.sendMessage(roomId, { ...currentUser, ...formData });
+        await messagesDB.pushMessage(roomId, { ...currentUser, ...formData });
 
         const roomSnapShot = await roomsDB.getRoom(roomId);
         const roomUserDataList: IUser[] = Object.values(roomSnapShot.val());

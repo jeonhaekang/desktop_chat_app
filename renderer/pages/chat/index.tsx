@@ -26,7 +26,7 @@ const Main = () => {
   const selctedTab = useMemo(() => query.tab || TAB_USERS, [query]);
 
   const handleSignOut = useCallback(() => {
-    userAuth.signOut();
+    userAuth.requestSignOut();
   }, []);
 
   const handleCreatRoom = useCallback(async (guestuser: IUser) => {
@@ -36,8 +36,8 @@ const Main = () => {
 
       const roomId = createdRoom.key;
 
-      await roomsDB.inviteUser(roomId, currentUser);
-      await roomsDB.inviteUser(roomId, guestuser);
+      await roomsDB.setUser(roomId, currentUser);
+      await roomsDB.setUser(roomId, guestuser);
 
       push(`/chat/${roomId}`);
     } catch (error) {

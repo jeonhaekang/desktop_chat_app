@@ -6,7 +6,7 @@ import Base from './Base';
 class MessagesDB extends Base {
   db = getDatabase(this.app);
 
-  subscribe(roomId: string, onAdded: TSnapShot) {
+  onMessageAdded(roomId: string, onAdded: TSnapShot) {
     const roomRef = ref(this.db, `Messages/${roomId}`);
 
     onChildAdded(roomRef, onAdded);
@@ -14,7 +14,7 @@ class MessagesDB extends Base {
     return roomRef;
   }
 
-  sendMessage(roomId: string, message: IMessage) {
+  pushMessage(roomId: string, message: IMessage) {
     const roomRef = ref(this.db, `Messages/${roomId}`);
 
     return push(roomRef, message);

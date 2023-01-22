@@ -26,7 +26,7 @@ const ChatRoomCard = (props: IUserRooms) => {
     try {
       const currentUser = await userAuth.getCurrentUser();
 
-      const ref = userRoomsDB.subscribeRoom(currentUser.uid, roomData.roomId, (roomSnapShot: DataSnapshot) => {
+      const ref = userRoomsDB.onRoomChanged(currentUser.uid, roomData.roomId, (roomSnapShot: DataSnapshot) => {
         const room = roomSnapShot.val();
 
         if (room) {

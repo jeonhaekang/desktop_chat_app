@@ -23,8 +23,8 @@ const SignIn = () => {
       e.preventDefault();
 
       try {
-        await userAuth.signIn(formData);
-        await userAuth.profileUpdate(formData);
+        await userAuth.createAccount(formData);
+        await userAuth.updateProfile(formData);
 
         push('/chat');
       } catch (error) {

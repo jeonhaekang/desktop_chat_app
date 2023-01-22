@@ -6,7 +6,7 @@ import Base from './Base';
 class UserRoomsDB extends Base {
   db = getDatabase(this.app);
 
-  subscribe(uid: string, onAdded: TSnapShot) {
+  onRoomsAdded(uid: string, onAdded: TSnapShot) {
     const messageRef = ref(this.db, `/UserRooms/${uid}`);
 
     onChildAdded(messageRef, onAdded);
@@ -14,10 +14,10 @@ class UserRoomsDB extends Base {
     return messageRef;
   }
 
-  subscribeRoom(uid: string, roomId: string, onAdded: TSnapShot) {
+  onRoomChanged(uid: string, roomId: string, onChanged: TSnapShot) {
     const roomRef = ref(this.db, `/UserRooms/${uid}/${roomId}`);
 
-    onValue(roomRef, onAdded);
+    onValue(roomRef, onChanged);
 
     return roomRef;
   }
@@ -28,10 +28,10 @@ class UserRoomsDB extends Base {
     return set(roomRef, data);
   }
 
-  updatedChecked(uid: string, roomId: string, checked: boolean) {
+  updateChecked(uid: string, roomId: string, data: object) {
     const roomRef = ref(this.db, `UserRooms/${uid}/${roomId}`);
 
-    return update(roomRef, { checked });
+    return update(roomRef, data);
   }
 }
 

@@ -27,7 +27,7 @@ const MessageHistory = () => {
   const scrollTarget = useRef<HTMLLIElement>(null);
 
   useMount(() => {
-    messagesDB.subscribe(roomId, async (messageSnapShot: DataSnapshot) => {
+    messagesDB.onMessageAdded(roomId, async (messageSnapShot: DataSnapshot) => {
       const message = messageSnapShot.val();
 
       setMessages((prev) => [...prev, message]);

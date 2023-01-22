@@ -33,7 +33,7 @@ const Room = () => {
   }, []);
 
   const handleInvite = useCallback(async (user: IUser) => {
-    await roomsDB.inviteUser(roomId, user);
+    await roomsDB.setUser(roomId, user);
   }, []);
 
   const handleOpenState = useCallback(() => {
@@ -41,7 +41,7 @@ const Room = () => {
   }, []);
 
   useMount(async () => {
-    const ref = roomsDB.subscribe(roomId, async (usersSnapShot) => {
+    const ref = roomsDB.onRoomChanged(roomId, async (usersSnapShot) => {
       if (usersSnapShot.val()) {
         const userList: IUser[] = Object.values(usersSnapShot.val());
 
@@ -56,9 +56,9 @@ const Room = () => {
     try {
       const user = await userAuth.getCurrentUser();
 
-      const ref = userRoomsDB.subscribeRoom(user.uid, roomId, (roomSnapShot) => {
+      const ref = userRoomsDB.onRoomChanged(user.uid, roomId, (roomSnapShot) => {
         if (roomSnapShot.val()) {
-          userRoomsDB.updatedChecked(user.uid, roomId, true);
+          userRoomsDB.updateChecked(user.uid, roomId, { checked: true });
         }
       });
 

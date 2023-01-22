@@ -14,27 +14,27 @@ import { IProfile, ISignIn, IUser } from '@/types/account';
 class UserAuth extends Base {
   auth = getAuth();
 
-  subscribe(onChangeAuth: NextOrObserver<User>) {
+  onAuthChanged(onChangeAuth: NextOrObserver<User>) {
     onAuthStateChanged(this.auth, onChangeAuth);
   }
 
-  signIn(account: ISignIn) {
+  createAccount(account: ISignIn) {
     const { email, password } = account;
 
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
-  signUp(account: ISignIn) {
+  requestSignIn(account: ISignIn) {
     const { email, password } = account;
 
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  signOut() {
+  requestSignOut() {
     return signOut(this.auth);
   }
 
-  profileUpdate(profile: IProfile) {
+  updateProfile(profile: IProfile) {
     const currentUser = this.auth.currentUser;
 
     return updateProfile(currentUser, profile);

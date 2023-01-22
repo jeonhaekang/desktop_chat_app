@@ -22,7 +22,7 @@ const SignUp = () => {
       e.preventDefault();
 
       try {
-        await userAuth.signUp(formData);
+        await userAuth.requestSignIn(formData);
 
         push(`/chat`);
       } catch (error) {

@@ -6,7 +6,7 @@ import { IUser } from '@/types/account';
 class UsersDB extends Base {
   db = getDatabase(this.app);
 
-  subscribe(onChange: TSnapShot) {
+  onUsersChanged(onChange: TSnapShot) {
     const usersRef = ref(this.db, 'Users');
 
     onValue(usersRef, onChange);

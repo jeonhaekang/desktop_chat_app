@@ -12,7 +12,7 @@ export const AccountContextProvider = ({ children }: { children: ReactNode }) =>
   const [currentUser, setCurrentUser] = useState<IUser>(null);
 
   useMount(() => {
-    userAuth.subscribe((currentUser) => {
+    userAuth.onAuthChanged((currentUser) => {
       if (currentUser) {
         const { uid, displayName } = currentUser;
 
