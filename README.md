@@ -57,6 +57,7 @@ yarn build:win64
 * 내가 참여중인 채팅방 목록
 * 사용자 더블 클릭을 통한 1:1 채팅방 개설
 * 개설된 채팅방에서 타 유저 초대 가능
+* 미확인 메세지 표시
 
 ### Data Flow
 ---
@@ -102,9 +103,12 @@ yarn build:win64
     <summary>채팅방</summary>
 <br/>
 
-|<img src="https://user-images.githubusercontent.com/73621658/213863657-6a736495-f403-4886-b851-c4ed615038e2.gif" />
+|<img src="https://user-images.githubusercontent.com/73621658/213898784-4c8ef517-75c7-420f-a69f-2c0e931401a4.gif" />|
 |:---:|
-|채팅방|
+|채팅방 개설 및 채팅|
+|<img src="https://user-images.githubusercontent.com/73621658/213898783-e5e586ae-cac4-479d-9745-154b56d4b45b.gif" />|
+|채팅방 초대|
+
 
 </details>
 
