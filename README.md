@@ -8,8 +8,9 @@
 1. [Stack](#stack)
 2. [How To Use](#how-to-use)
 3. [Key Features](#key-features)
-4. [Data Flow](#data-flow)
-5. [Demo GIF](#demo-gif)
+4. [Server](#server)
+5. [Data Flow](#data-flow)
+6. [Demo GIF](#demo-gif)
 
 ### Stack
 ----
