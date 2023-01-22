@@ -7,7 +7,7 @@ const config = {
   projectId: 'YOUR PROJECT ID',
   storageBucket: 'USER STORAGE BUCKET',
   messagingSenderId: 'YOUR MESSAGING SENDER ID',
-  appId: 'YOUR APP ID',
+  appId: 'YOUR',
 };
 
 const app = initializeApp(config);
