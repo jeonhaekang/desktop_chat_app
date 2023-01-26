@@ -1,7 +1,8 @@
 # Chatting Application
 
 데스크톱 채팅 프로그램
-
+[윈도우 설치 파일 다운로드](https://drive.google.com/file/d/1FN2idF73xfBluhRnoGrwt33gSIHamBZK/view?usp=sharing)
+[맥 설치 파일 다운로드](https://drive.google.com/file/d/1RMj8YRb7lT2iRvwH7Gq-g5E2tbpcA4eS/view?usp=sharing)
 
 ### Contents
 ---
